@@ -1,4 +1,5 @@
 import pygame
+import random
 from constants import *
 
 class Xiaoren:
@@ -37,6 +38,9 @@ class Xiaoren:
                 self.velocity = XIAOREN_SPEED
             if event.key == pygame.K_LEFT:
                 self.velocity = -XIAOREN_SPEED
+            if event.key == pygame.K_SPACE:
+                self.x += random.randint(0, WINDOW_WIDTH)
+                self.x %= WINDOW_WIDTH
         if event.type == pygame.KEYUP:
             if (event.key == pygame.K_RIGHT and self.velocity == XIAOREN_SPEED) or \
                (event.key == pygame.K_LEFT and self.velocity == -XIAOREN_SPEED):
