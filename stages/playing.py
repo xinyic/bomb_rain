@@ -3,12 +3,13 @@ import random
 from objects.xiaoren import Xiaoren
 from objects.bomb import Bomb
 from constants import *
+from losing import Losing
 
 class Playing:
     def __init__(self):
         self.xiaoren = Xiaoren(WINDOW_WIDTH / 2)
         self.bombs = []
-        self.game_over = False
+        self.losing_stage = None
 
     def all_game_objects(self):
         return self.bombs + [self.xiaoren]
@@ -29,8 +30,9 @@ class Playing:
             if b.is_out_of_screen():
                 self.bombs.remove(b)
 
-        if self.check_explosion() is not None:
-            self.game_over = True
+        exploded_bomb = self.check_explosion()
+        if exploded_bomb is not None:
+            self.losing_stage = Losing(self.xiaoren, self.bombs, exploded_bomb)
             
     def handle_event(self, event):
         for o in self.all_game_objects():
@@ -43,7 +45,4 @@ class Playing:
         return None
 
     def next_stage(self):
-        if self.game_over:
-            return Playing()
-        else:
-            return None
+        return self.losing_stage
