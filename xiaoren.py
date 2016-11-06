@@ -38,7 +38,8 @@ class Xiaoren:
             if event.key == pygame.K_LEFT:
                 self.velocity = -5
         if event.type == pygame.KEYUP:
-            if (event.key == pygame.K_RIGHT) or (event.key == pygame.K_LEFT):
+            if (event.key == pygame.K_RIGHT and self.velocity == 5) or \
+               (event.key == pygame.K_LEFT and self.velocity == -5):
                 self.velocity = 0
 
     def update(self):
