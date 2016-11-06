@@ -10,7 +10,7 @@ clock = pygame.time.Clock()
 
 game = Game()
 
-while not game.game_over:
+while not game.done:
     for e in pygame.event.get():
         game.handle_event(e)
 
