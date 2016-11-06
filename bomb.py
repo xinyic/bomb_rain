@@ -18,4 +18,4 @@ class Bomb:
         pass
 
     def is_out_of_screen(self):
-        return self.y > 705
+        return self.y > WINDOW_HEIGHT + 5

@@ -6,7 +6,7 @@ from constants import *
 
 class Game:
     def __init__(self):
-        self.xiaoren = Xiaoren(350)
+        self.xiaoren = Xiaoren(WINDOW_WIDTH / 2)
         self.bombs = []
         self.game_over = False
 
@@ -20,7 +20,7 @@ class Game:
     def update(self):
         should_create_bomb = (random.randint(0, 10) == 3)
         if should_create_bomb:
-            self.bombs.append(Bomb(random.randint(0, 700)))
+            self.bombs.append(Bomb(random.randint(0, WINDOW_WIDTH)))
 
         for o in self.all_game_objects():
             o.update()
@@ -41,7 +41,7 @@ class Game:
 
     def check_explosion(self):
         for b in self.bombs:
-            if b.y > 477 and abs(b.x - self.xiaoren.x) < 15:
+            if (b.y > WINDOW_HEIGHT - 23) and abs(b.x - self.xiaoren.x) < 15:
                 return b
         return None
 
